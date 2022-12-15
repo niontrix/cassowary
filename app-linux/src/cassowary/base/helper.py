@@ -11,9 +11,9 @@ import libvirt
 from cassowary.gui.components.vmstart import StartDg
 
 logger = get_logger(__name__)
-wake_base_cmd = 'xfreerdp /d:"{domain}" /u:"{user}" /p:"{passd}" /v:"{ip}" +clipboard /a:drive,root,{share_root} ' \
-                '+decorations /cert-ignore /sound /scale:100 /dynamic-resolution /span  ' \
-                '/wm-class:"cassowaryApp-echo" /app:"{app}"'
+wake_base_cmd = "xfreerdp /d:'{domain}' /u:'{user}' /p:'{passd}' /v:'{ip}' +clipboard /a:drive,root,{share_root} " \
+                "+decorations /cert-ignore /sound /scale:100 /dynamic-resolution /span  " \
+                "/wm-class:'cassowaryApp-echo' /app:'{app}'"
 
 
 def randomstr(leng=4):
