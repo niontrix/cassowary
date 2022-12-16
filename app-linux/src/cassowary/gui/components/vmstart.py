@@ -4,6 +4,7 @@ import threading
 import libvirt
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
+from PyQt5.QtCore import QCoreApplication
 from cassowary.base.cfgvars import cfgvars
 from cassowary.base.log import get_logger
 import os
@@ -17,12 +18,8 @@ class StartDg(QDialog):
         self.path = os.path.dirname(os.path.realpath(__file__))
         uic.loadUi(os.path.join(cfgvars.app_root, "gui", "qtui_files", "vmstart.ui"), self)
         self.lb_msg.setText("The VM '{}' is not running. Do you want to start the vm now ?\n".format(cfgvars.config["vm_name"]))
-        self.btn_startvm.clicked.connect(self.bg_st)
+        self.btn_startvm.clicked.connect(self.wait_vm)
         self.btn_cancel.clicked.connect(self.close)
-
-    def bg_st(self):
-        stt = threading.Thread(target=self.wait_vm)
-        stt.start()
 
     def wait_vm(self):
         self.btn_startvm.hide()
@@ -31,20 +28,25 @@ class StartDg(QDialog):
             logging.debug("Using VM")
             try:
                 conn = libvirt.open(cfgvars.config["libvirt_uri"])
+                QCoreApplication.processEvents()
                 if conn is not None:
                     self.lb_msg.setText(self.lb_msg.text() + "=> Connected to libvirt !\n")
                     dom = conn.lookupByName(cfgvars.config["vm_name"])
+                    QCoreApplication.processEvents()
                     self.lb_msg.setText(self.lb_msg.text() + "=> VM Found\n")
                     if dom.info()[0] == 5:
                         logging.debug("VM was found and is turned off")
                         self.lb_msg.setText(self.lb_msg.text() + "=> Starting the vm \n")
                         dom.create()
+                        QCoreApplication.processEvents()
                         logging.debug("Called libvirt to start the VM")
                         self.lb_msg.setText(self.lb_msg.text() + "=> Waiting for VM networking to be active !\n")
                         vm_ip = None
                         logging.debug("Waiting for VM to get valid IP address\n")
+                        QCoreApplication.processEvents()
                         while vm_ip is None:
                             interfaces = dom.interfaceAddresses(libvirt.VIR_DOMAIN_INTERFACE_ADDRESSES_SRC_LEASE)
+                            QCoreApplication.processEvents()
                             if interfaces is not None:
                                 for interface in interfaces:
                                     try:
