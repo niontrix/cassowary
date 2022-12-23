@@ -4,6 +4,7 @@ import json
 
 class Vars:
     def __init__(self):
+        self.app_root = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")
         self.app_name = "casualrdh"
         self.config = None
         self.config_dir = os.path.join(os.path.expanduser("~"), ".config", self.app_name)

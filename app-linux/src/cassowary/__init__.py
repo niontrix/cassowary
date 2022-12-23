@@ -17,7 +17,6 @@ import re
 
 def main():
     logger = get_logger(__name__)
-    cfgvars.app_root = os.path.dirname(os.path.realpath(__file__))
 
     def start_bg_client(reconnect=True):
         vm_watcher = threading.Thread(target=vm_suspension_handler)
