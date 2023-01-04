@@ -5,8 +5,8 @@ import libvirt
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from PyQt5.QtCore import QCoreApplication
-from cassowary.base.cfgvars import cfgvars
-from cassowary.base.log import get_logger
+from ...base.cfgvars import cfgvars
+from ...base.log import get_logger
 import os
 
 logging = get_logger(__name__)

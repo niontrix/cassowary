@@ -1,6 +1,6 @@
 from .minidialog import MiniDialog
-from cassowary.base.cfgvars import cfgvars
-from PyQt5.QtWidgets import *
+from ...base.cfgvars import cfgvars
+from PyQt5.QtWidgets import QDialog
 from PyQt5 import uic
 import base64
 import os

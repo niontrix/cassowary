@@ -3,19 +3,20 @@ import socket
 import time
 import traceback
 from PyQt5.QtWidgets import QMainWindow, QHeaderView, QLineEdit, QFileDialog, QPushButton, QTableWidgetItem
-from cassowary.base.functions import *
-from cassowary.base.log import get_logger
-from cassowary.base.helper import replace_vars, get_windows_cifs_locations, mount_pending, unmount_all, ip_by_vm_name, \
+from ...base.functions import *
+from ...base.log import get_logger
+from ...base.helper import replace_vars, get_windows_cifs_locations, mount_pending, unmount_all, ip_by_vm_name, \
     full_rdp, vm_wake, fix_black_window
 from .minidialog import MiniDialog
 from .sharesandmaps import AddMapDialog, AddShareDialog
 from .desktopitemdialog import DesktopItemDialog
 from PyQt5 import uic
-from cassowary.client import Client
+from ...client import Client
 import subprocess
 import re
 
 logger = get_logger(__name__)
+
 
 class MainWindow(QMainWindow):
     def __init__(self):

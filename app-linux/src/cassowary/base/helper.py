@@ -8,7 +8,7 @@ from .log import get_logger
 import os
 import re
 import libvirt
-from cassowary.gui.components.vmstart import StartDg
+from ..gui.components.vmstart import StartDg
 
 logger = get_logger(__name__)
 wake_base_cmd = "xfreerdp /d:'{domain}' /u:'{user}' /p:'{passd}' /v:'{ip}' +clipboard /a:drive,root,{share_root} " \
@@ -111,7 +111,7 @@ def mount_pending():
         logger.debug("Generated mount command: '%s'", mount)
         if os.environ.get("DIALOG_MODE") == "console":
             logger.debug("Dialog mode set to console.. Using xterm to mount remote drives")
-            os.popen("xterm -T 'casualRDH | Enter sudo password to mount drives' -e sudo sh -c '{command}'".format(
+            os.popen("xterm -T 'cassowary | Enter sudo password to mount drives' -e sudo sh -c '{command}'".format(
                 command=mount
             ).replace("\\", "/")).read()
         else:
@@ -131,7 +131,7 @@ def unmount_all():
         logger.debug("Genetared unmount command: '%s'", umount_cmd)
         if os.environ.get("DIALOG_MODE") == "console":
             logger.debug("Dialog mode set to console.. Using xterm to unmount remote drives")
-            os.popen("xterm -T 'casualRDH | Enter sudo password to unmount drives' -e sudo sh -c '{command}'".format(
+            os.popen("xterm -T 'cassowary | Enter sudo password to unmount drives' -e sudo sh -c '{command}'".format(
                 command=umount_cmd
             ).replace("\\", "/")).read()
         else:
