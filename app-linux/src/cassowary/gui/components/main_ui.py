@@ -139,7 +139,7 @@ Version=1.0
 
     def __set_mount_dir(self):
         dir_path = QFileDialog.getExistingDirectory(None, 'Select mount directory:', "/mnt")
-        self.inp_mountroot.setText(os.path.join(dir_path, "casualrdh"))
+        self.inp_mountroot.setText(os.path.join(dir_path, "cassowary"))
 
     def __set_shared_dir(self):
         dir_path = QFileDialog.getExistingDirectory(None, 'Select directory to be shared to VM:', "/")

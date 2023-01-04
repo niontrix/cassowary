@@ -3,9 +3,11 @@ import json
 
 
 class Vars:
+    """A class holding global configuration values."""
+
     def __init__(self):
         self.app_root = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")
-        self.app_name = "casualrdh"
+        self.app_name = "cassowary"
         self.config = None
         self.config_dir = os.path.join(os.path.expanduser("~"), ".config", self.app_name)
         self.cache_dir = os.path.join(os.path.expanduser("~"), ".cache", self.app_name)

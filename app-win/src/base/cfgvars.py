@@ -4,7 +4,7 @@ import json
 
 class Vars:
     def __init__(self):
-        self.app_name = "casualrdh"
+        self.app_name = "cassowary"
         self.config = None
         self.config_dir = os.path.join(os.path.expanduser("~"), ".config", self.app_name)
         self.tempdir = os.path.join(os.path.expandvars("%TEMP%"), self.app_name)
